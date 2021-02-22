@@ -28,6 +28,8 @@
               "projects/@app/blog/src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.css",
               "projects/@app/blog/src/styles.scss"
             ],
             "scripts": []
@@ -148,6 +150,8 @@
               "projects/@app/admin/src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.css",
               "projects/@app/admin/src/styles.scss"
             ],
             "scripts": []
