@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+// library section
+import { ButtonModule } from '@components/button';
+
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -8,7 +11,8 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
