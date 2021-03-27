@@ -2,18 +2,34 @@
   <h4>Welcome to Angular Reactive Forms Tutorial</h4>
   <p>Let's build simple form with Angular</p>
 
-  <form>
+  <form [formGroup]="formGroup">
     <div class="form-group">
       <label for="name">Name</label>
-      <input type="text" class="form-control" id="name" />
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        formControlName="name"
+      />
     </div>
     <div class="form-group">
       <label for="age">Age</label>
-      <input type="number" class="form-control" id="age" />
+      <input
+        type="number"
+        class="form-control"
+        id="age"
+        formControlName="age"
+      />
     </div>
     <div class="form-group">
       <label for="address">Address</label>
-      <textarea type="text" class="form-control" id="address"> </textarea>
+      <textarea
+        type="text"
+        class="form-control"
+        id="address"
+        formControlName="address"
+      >
+      </textarea>
     </div>
     <div class="form-group">
       <label for="name">Gender</label>

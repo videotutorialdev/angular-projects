@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'ngid-root',
   templateUrl: './app.component.html',
@@ -6,22 +7,28 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-  title = '@app/blog';
+  title = 'Angular Reactive Form Tutorial';
 
-  public user = {
-    name: 'John Doe', // input text
-    address: 'Jln. Mangga Delima 1', // text area
-    gender: "Male", // input radio
-    age: 22,
-    skills: 1, // input checkbox
-    country: "Indonesia", // input select
-    hobbies: 2, // input select,
-  }
+  // public name = new FormControl('John Doe');
+  // public age = new FormControl(22);
+  // public address = new FormControl('Pluto');
 
-  constructor() {}
+  public formGroup: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
+    this.setFormGroupState();
     console.log('Info: Come from ngOnInit');
+    console.log(this.formGroup);
+  }
+
+  private setFormGroupState(): void {
+    this.formGroup = this.formBuilder.group({
+      name: new FormControl('John Doe'),
+      age: new FormControl(22),
+      address: new FormControl('Pluto')
+    });
   }
 
   public handleCancel(): void {
@@ -29,10 +36,11 @@ export class AppComponent implements OnInit {
   }
 
   public handleReset(): void {
-    console.log('Info: Come from handleReset');
+    this.formGroup.reset();
   }
 
   public handleSubmit(): void {
     console.log('Info: Come from handleSubmit');
+    console.log(this.formGroup.value);
   }
 }
