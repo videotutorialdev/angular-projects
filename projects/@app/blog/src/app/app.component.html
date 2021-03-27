@@ -1,8 +1,21 @@
-<div class="container">
-  <h4>Welcome to my first blog</h4>
-  <ngid-button color="WARNING" size="SM" [disabled]="true" (onClick)="handleClick()">
-    <em class="fas fa-plus"></em>
-    Submit
-  </ngid-button>
-  <br />
+<div class="container my-4">
+  <h4>Welcome to Angular Popup Tutorial</h4>
+  <p>Learn to build simple popup with Angular And Bootstrap</p>
+  <ngid-button (onClick)="handleShowModal(content)">Show Modal</ngid-button>
+  <ngid-button (onClick)="handleCloseModal()">Close Modal</ngid-button>
 </div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Example Modal</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h4>Hello World</h4>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>

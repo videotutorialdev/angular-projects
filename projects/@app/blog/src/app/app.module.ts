@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ButtonModule } from '@components/button';
 
 import { AppComponent } from './app.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    ButtonModule
+    ButtonModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
