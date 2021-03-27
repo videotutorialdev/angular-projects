@@ -6,6 +6,10 @@
       "@components/button": [
         "dist/components/button/components-button",
         "dist/components/button"
+      ],
+      "@components/popup": [
+        "dist/components/popup/components-popup",
+        "dist/components/popup"
       ]
     },
     "baseUrl": "./",

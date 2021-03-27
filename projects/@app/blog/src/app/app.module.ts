@@ -7,6 +7,7 @@ import { ButtonModule } from '@components/button';
 
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PopupModule } from 'projects/components/popup/src/public-api';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     BrowserModule,
     ButtonModule,
-    NgbModule
+    NgbModule,
+    PopupModule
   ],
   providers: [],
   bootstrap: [AppComponent]
