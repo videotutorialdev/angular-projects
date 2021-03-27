@@ -1,36 +1,32 @@
 import { Component, TemplateRef } from '@angular/core';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { PopupService } from '@components/popup';
+import { PopupLoginComponent } from './popup-login/popup-login.component';
 
 @Component({
   selector: 'ngid-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = '@app/blog';
 
-  public modal: NgbModalRef;
-
-  constructor(public ngbModal: NgbModal) {}
+  constructor(public popupService: PopupService) {}
 
   public handleShowModal(content: TemplateRef<object>): void {
-    console.log(content);
-    console.log('Info: Click works!!!');
-    this.modal = this.ngbModal.open(content);
-
-    this.modal.closed.subscribe(response => {
-      console.log('Info: Come from closed observable');
+    this.popupService.open(content).subscribe((response) => {
+      console.log('Info: Come from response');
       console.log(response);
-    })
-   
-    this.modal.dismissed.subscribe(response => {
-      console.log('Info: Come from dismissed observable');
-      console.log(response);
-    })
+    });
   }
 
-  public handleCloseModal(): void {
-    this.modal.close('Come from manual close modal');
+  public handleLogin(): void {
+    this.popupService.open(PopupLoginComponent, {
+      user: {
+        id: 1,
+        name: 'John Doe',
+        age: '24',
+        email: 'johndoe@gmail.com'
+      }
+    });
   }
-
 }

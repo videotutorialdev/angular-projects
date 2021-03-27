@@ -8,10 +8,11 @@ import { ButtonModule } from '@components/button';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PopupModule } from 'projects/components/popup/src/public-api';
-
+import { PopupLoginComponent } from './popup-login/popup-login.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PopupLoginComponent
   ],
   imports: [
     BrowserModule,

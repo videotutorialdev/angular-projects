@@ -1,21 +1,5 @@
 <div class="container my-4">
   <h4>Welcome to Angular Popup Tutorial</h4>
   <p>Learn to build simple popup with Angular And Bootstrap</p>
-  <ngid-button (onClick)="handleShowModal(content)">Show Modal</ngid-button>
-  <ngid-button (onClick)="handleShowModal(contentOne)"
-    >Show Modal 1</ngid-button
-  >
-  <ngid-button (onClick)="handleCloseModal()">Close Modal</ngid-button>
+  <ngid-button (onClick)="handleLogin()">Login</ngid-button>
 </div>
-
-<ng-template #content let-modal>
-  <ngid-popup [modal]="modal" header="Custom Header Default">
-    Custom Content Default
-  </ngid-popup>
-</ng-template>
-
-<ng-template #contentOne let-modal>
-  <ngid-popup [modal]="modal" header="Custom Header 1">
-    Custom Content 1
-  </ngid-popup>
-</ng-template>
