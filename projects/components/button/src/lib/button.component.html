@@ -1,3 +1,3 @@
-<button [ngClass]="btnClassName" [disabled]="disabled">
+<button [ngClass]="btnClassName" [disabled]="disabled" (click)="handleClick($event)">
     <ng-content></ng-content>
 </button>

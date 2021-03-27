@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ButtonSize } from './types/button-size.type';
 import { ButtonColor } from './types/button-color.type';
 @Component({
@@ -10,6 +10,8 @@ export class ButtonComponent implements OnInit {
   @Input() size: ButtonSize;
   @Input() color: ButtonColor;
   @Input() disabled: boolean;
+
+  @Output() onClick: EventEmitter<PointerEvent> = new EventEmitter();
 
   public btnClassName: string;
 
@@ -49,6 +51,10 @@ export class ButtonComponent implements OnInit {
   private setButtonColor(): void {
     const buttonColor: ButtonColor = this.color || 'PRIMARY';
     this.btnClassName += `${this.BUTTON_COLOR[buttonColor]}`;
+  }
+
+  public handleClick(pointerEvent: PointerEvent): void {
+    this.onClick.emit(pointerEvent);
   }
 
 }

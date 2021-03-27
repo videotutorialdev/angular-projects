@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = '@app/blog';
+
+  public handleClick(): void {
+    console.log('Info: Click works!!!');
+  }
 }

@@ -1,11 +1,7 @@
 <div class="container">
   <h4>Welcome to my first blog</h4>
-  <i class="fas fa-check"></i>
-  <i class="fas fa-check-circle"></i>
-  <br />
-  <small class="text-warning">Warn</small>
-  <br>
-  <ngid-button color="WARNING" size="SM" [disabled]="true">
+  <ngid-button color="WARNING" size="SM" [disabled]="true" (onClick)="handleClick()">
+    <em class="fas fa-plus"></em>
     Submit
   </ngid-button>
   <br />
