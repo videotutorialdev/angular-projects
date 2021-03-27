@@ -1,5 +1,81 @@
 <div class="container my-4">
-  <h4>Welcome to Angular Popup Tutorial</h4>
-  <p>Learn to build simple popup with Angular And Bootstrap</p>
-  <ngid-button (onClick)="handleLogin()">Login</ngid-button>
+  <h4>Welcome to Angular Reactive Forms Tutorial</h4>
+  <p>Let's build simple form with Angular</p>
+
+  <form>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" />
+    </div>
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input type="number" class="form-control" id="age" />
+    </div>
+    <div class="form-group">
+      <label for="address">Address</label>
+      <textarea type="text" class="form-control" id="address"> </textarea>
+    </div>
+    <div class="form-group">
+      <label for="name">Gender</label>
+      <div
+        class="custom-control custom-radio"
+        *ngFor="let gender of ['Male', 'Female']; let i = index"
+      >
+        <input
+          type="radio"
+          id="{{ 'gender' + i }}"
+          class="custom-control-input"
+        />
+        <label for="{{ 'gender' + i }}" class="custom-control-label">{{
+          gender
+        }}</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="name">Skills</label>
+      <div
+        class="custom-control custom-checkbox"
+        *ngFor="let skill of ['JavaScript', 'Angular']; let i = index"
+      >
+        <input
+          type="checkbox"
+          id="{{ 'skill' + i }}"
+          class="custom-control-input"
+        />
+        <label for="{{ 'skill' + i }}" class="custom-control-label">{{
+          skill
+        }}</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="name">Country</label>
+      <select class="custom-select">
+        <option value="">Select Country</option>
+        <option value="1">Indonesia</option>
+        <option value="2">Malaysia</option>
+        <option value="3">Singapura</option>
+        <option value="4">Filipina</option>
+        <option value="5">Thailand</option>
+        <option value="6">Kamboja</option>
+        <option value="7">Brunei Darussalam</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="name">Hobbies</label>
+      <select class="custom-select">
+        <option value="">Select Hobbies</option>
+        <option value="1">Singing</option>
+        <option value="2">Develope</option>
+        <option value="3">Traveling</option>
+        <option value="4">Playing Guitar</option>
+      </select>
+    </div>
+  </form>
+  <div class="btn-group btn-group-right">
+    <ngid-button color="SECONDARY" (onClick)="handleCancel()">
+      Cancel
+    </ngid-button>
+    <ngid-button color="WARNING" (onClick)="handleReset()">Reset</ngid-button>
+    <ngid-button (onClick)="handleSubmit()">Submit</ngid-button>
+  </div>
 </div>

@@ -1,0 +1,21 @@
+div.btn-group {
+  &.btn-group-left {
+    button {
+      margin-right: 0.22rem;
+    }
+  }
+
+  &.btn-group-center {
+    button {
+      margin: 0 0.11rem;
+    }
+  }
+
+  &.btn-group-right {
+    display: flex;
+    justify-content: flex-end;
+    button {
+      margin-left: 0.22rem;
+    }
+  }
+}
