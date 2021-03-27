@@ -35,16 +35,19 @@
       <label for="name">Gender</label>
       <div
         class="custom-control custom-radio"
-        *ngFor="let gender of ['Male', 'Female']; let i = index"
+        *ngFor="let gender of genderList; let i = index"
       >
         <input
           type="radio"
           id="{{ 'gender' + i }}"
           class="custom-control-input"
+          [value]="gender"
+          [checked]="formGroup.get('gender').value.id === gender.id"
+          (change)="handleChangeGender(gender)"
         />
-        <label for="{{ 'gender' + i }}" class="custom-control-label">{{
-          gender
-        }}</label>
+        <label for="{{ 'gender' + i }}" class="custom-control-label">
+          {{ gender.name }}
+        </label>
       </div>
     </div>
     <div class="form-group">
