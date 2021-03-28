@@ -54,16 +54,18 @@
       <label for="name">Skills</label>
       <div
         class="custom-control custom-checkbox"
-        *ngFor="let skill of ['JavaScript', 'Angular']; let i = index"
+        *ngFor="let skill of skillList; let i = index"
       >
         <input
           type="checkbox"
           id="{{ 'skill' + i }}"
           class="custom-control-input"
+          (change)="handleChangeSkill($event.target.checked, i)"
+          [checked]="isChecked(formGroup.get('skills').value, skill)"
         />
-        <label for="{{ 'skill' + i }}" class="custom-control-label">{{
-          skill
-        }}</label>
+        <label for="{{ 'skill' + i }}" class="custom-control-label">
+          {{ skill.name }}
+        </label>
       </div>
     </div>
     <div class="form-group">

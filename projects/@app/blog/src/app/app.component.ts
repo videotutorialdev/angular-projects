@@ -15,7 +15,8 @@ export class AppComponent implements OnInit {
 
   public formGroup: FormGroup;
 
-  public genderList: Array<{id: number, name: string}>;
+  public genderList: Array<Gender>;
+  public skillList: Array<Skill>;
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -30,7 +31,14 @@ export class AppComponent implements OnInit {
     this.genderList = [
       { id: 1, name: 'Male' },
       { id: 2, name: 'Female' },
-    ]
+    ];
+
+    this.skillList = [
+      { id: 1, name: 'JavaScript' },
+      { id: 2, name: 'NodeJS' },
+      { id: 3, name: 'Angular' },
+      { id: 4, name: 'ReactJS'}
+    ];
   }
 
   private setFormGroupState(): void {
@@ -38,12 +46,25 @@ export class AppComponent implements OnInit {
       name: ['John Doe'],
       age: [22],
       address: ['Pluto'],
-      gender: [{ id: 1, name: 'Male' }]
+      gender: [{ id: 1, name: 'Male' }],
+      skills: [null]
     });
+
+    setTimeout(() => {
+      console.log('Info: Come from response');
+      this.formGroup.get('skills').patchValue(this.skillList);
+    }, 5000)
   }
 
-  public handleChangeGender(gender: {id: number, name: string}): void {
+  public handleChangeGender(gender: Gender): void {
     this.formGroup.get('gender').patchValue(gender);
+  }
+
+  public handleChangeSkill(isChecked: boolean, index: number): void {
+    const currentValue: Array<Skill> = this.formGroup.get('skills').value || [];
+    isChecked 
+    ? this.formGroup.get('skills').patchValue([...currentValue, this.skillList[index]])
+    : this.formGroup.patchValue(currentValue.splice(index, 1));
   }
 
   public handleCancel(): void {
@@ -58,4 +79,16 @@ export class AppComponent implements OnInit {
     console.log('Info: Come from handleSubmit');
     console.log(this.formGroup.value);
   }
+
+  public isChecked(formControlValue: Array<Skill>, skill: Skill): boolean {
+    return (formControlValue || []).findIndex(value => JSON.stringify(value) === JSON.stringify(skill)) !== -1;
+  }
 }
+
+export interface BaseInterface {
+  id: number;
+  name: string;
+}
+interface Skill extends BaseInterface { }
+
+interface Gender extends BaseInterface { }
