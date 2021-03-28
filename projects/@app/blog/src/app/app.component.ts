@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
 
   public genderList: Array<Gender>;
   public skillList: Array<Skill>;
+  public countryList: Array<Country>;
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -39,6 +40,16 @@ export class AppComponent implements OnInit {
       { id: 3, name: 'Angular' },
       { id: 4, name: 'ReactJS'}
     ];
+
+    this.countryList = [
+      { id: 1, name: 'Indonesia' },
+      { id: 2, name: 'Malaysia' },
+      { id: 3, name: 'Singapura' },
+      { id: 4, name: 'Filipina' },
+      { id: 5, name: 'Thailand' },
+      { id: 6, name: 'Brunei Darussalam' },
+      { id: 7, name: 'Kamboja' },
+    ]
   }
 
   private setFormGroupState(): void {
@@ -47,7 +58,8 @@ export class AppComponent implements OnInit {
       age: [22],
       address: ['Pluto'],
       gender: [{ id: 1, name: 'Male' }],
-      skills: [null]
+      skills: [null],
+      country: [{ id: 1, name: 'Indonesia' }]
     });
 
     setTimeout(() => {
@@ -83,6 +95,10 @@ export class AppComponent implements OnInit {
   public isChecked(formControlValue: Array<Skill>, skill: Skill): boolean {
     return (formControlValue || []).findIndex(value => JSON.stringify(value) === JSON.stringify(skill)) !== -1;
   }
+
+  public handleCompareCountry(firstCountry: Country, secondCountry: Country): boolean {
+    return firstCountry && secondCountry ? firstCountry.id === secondCountry.id : firstCountry === secondCountry
+  }
 }
 
 export interface BaseInterface {
@@ -92,3 +108,5 @@ export interface BaseInterface {
 interface Skill extends BaseInterface { }
 
 interface Gender extends BaseInterface { }
+
+interface Country extends BaseInterface {}

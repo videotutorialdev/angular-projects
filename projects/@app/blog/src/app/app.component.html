@@ -70,15 +70,15 @@
     </div>
     <div class="form-group">
       <label for="name">Country</label>
-      <select class="custom-select">
-        <option value="">Select Country</option>
-        <option value="1">Indonesia</option>
-        <option value="2">Malaysia</option>
-        <option value="3">Singapura</option>
-        <option value="4">Filipina</option>
-        <option value="5">Thailand</option>
-        <option value="6">Kamboja</option>
-        <option value="7">Brunei Darussalam</option>
+      <select
+        [compareWith]="handleCompareCountry"
+        class="custom-select"
+        formControlName="country"
+      >
+        <option value="null">Select Country</option>
+        <option [ngValue]="country" *ngFor="let country of countryList">
+          {{ country.name }}
+        </option>
       </select>
     </div>
     <div class="form-group">
