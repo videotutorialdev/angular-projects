@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'ngid-root',
   templateUrl: './app.component.html',
@@ -59,13 +59,45 @@ export class AppComponent implements OnInit {
       address: ['Pluto'],
       gender: [{ id: 1, name: 'Male' }],
       skills: [null],
-      country: [{ id: 1, name: 'Indonesia' }]
+      country: [{ id: 1, name: 'Indonesia' }],
+      questionAnswerList: this.formBuilder.array([]),
+      hobbieList: this.formBuilder.array([])
     });
 
-    setTimeout(() => {
-      console.log('Info: Come from response');
-      this.formGroup.get('skills').patchValue(this.skillList);
-    }, 5000)
+    this.questionAnswerListFormArray.push(this.formBuilder.group({
+      question: ['What is the best programming language in the world?'],
+      answer: ['NodeJS']
+    }));
+
+    this.hobbiesListFormArray.push(new FormControl('Code'));
+  }
+
+  public get questionAnswerListFormArray(): FormArray {
+    return <FormArray>this.formGroup.get('questionAnswerList');
+    
+  }
+
+  public get hobbiesListFormArray(): FormArray {
+    return <FormArray>this.formGroup.get('hobbieList');
+  }
+
+  public handleAddNewQuestionAnswer(): void {
+    this.questionAnswerListFormArray.push(this.formBuilder.group({
+      question: [`Random Question ${this.questionAnswerListFormArray.length}`],
+      answer: [null]
+    }));
+  }
+
+  public handleAddNewHobbie(): void {
+    this.hobbiesListFormArray.push(new FormControl(null));
+  }
+
+  public handleDeleteQuestionAnswerItem(index: number): void {
+    this.questionAnswerListFormArray.removeAt(index);
+  }
+
+  public handleDeleteHobbieItem(index: number): void {
+    this.hobbiesListFormArray.removeAt(index);
   }
 
   public handleChangeGender(gender: Gender): void {

@@ -91,8 +91,71 @@
         <option value="4">Playing Guitar</option>
       </select>
     </div>
+
+    <div
+      class="p-4 border border-rounded mb-4"
+      formArrayName="questionAnswerList"
+    >
+      <h4>Dynamic Form Section: Question & Answer</h4>
+      <div
+        class="form-group"
+        *ngFor="
+          let formGroupQuestionAnswer of questionAnswerListFormArray.controls;
+          let i = index
+        "
+        [formGroup]="formGroupQuestionAnswer"
+      >
+        <label for="question1"
+          ><strong>Question {{ i + 1 }}: </strong>
+          <em
+            class="fas fa-times text-danger"
+            (click)="handleDeleteQuestionAnswerItem(i)"
+            style="cursor: pointer"
+          ></em>
+        </label>
+        <input
+          type="text"
+          class="form-control mb-2"
+          formControlName="question"
+          placeholder="Question"
+        />
+        <input
+          type="text"
+          class="form-control"
+          formControlName="answer"
+          placeholder="Answer"
+        />
+      </div>
+      <ngid-button (onClick)="handleAddNewQuestionAnswer()"
+        >Add New Question Answer</ngid-button
+      >
+    </div>
+
+    <div class="p-4 border border-rounded" formArrayName="questionAnswerList">
+      <h4>Dynamic Form Section: Hobbies</h4>
+      <div
+        class="form-group"
+        *ngFor="let formControl of hobbiesListFormArray.controls; let i = index"
+      >
+        <label for="question1"
+          ><strong>Hobbie {{ i + 1 }}: </strong>
+          <em
+            class="fas fa-times text-danger"
+            (click)="handleDeleteHobbieItem(i)"
+            style="cursor: pointer"
+          ></em>
+        </label>
+        <input
+          type="text"
+          class="form-control mb-2"
+          [formControl]="formControl"
+          placeholder="Hobbie"
+        />
+      </div>
+      <ngid-button (onClick)="handleAddNewHobbie()">Add New Hobbie</ngid-button>
+    </div>
   </form>
-  <div class="btn-group btn-group-right">
+  <div class="btn-group btn-group-right mt-4">
     <ngid-button color="SECONDARY" (onClick)="handleCancel()">
       Cancel
     </ngid-button>
