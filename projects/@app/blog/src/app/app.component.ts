@@ -4,7 +4,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
   selector: 'ngid-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent implements OnInit {
   title = 'Angular Reactive Form Tutorial';
@@ -19,12 +19,31 @@ export class AppComponent implements OnInit {
   public skillList: Array<Skill>;
   public countryList: Array<Country>;
 
+  public isDisabled: Boolean;
+
+  public formControlName: FormControl = new FormControl(null);
+
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.setInitializationState();
     this.setFormGroupState();
     console.log('Info: Come from ngOnInit');
+    console.log(this.formGroup);
+    console.log(this.formControlName);
+  }
+
+  public handleDisableOrEnableForm(): void {
+    this.isDisabled = !this.isDisabled;
+    if (this.formControlName.value) {
+      if (this.formGroup.get(this.formControlName.value)) {
+        this.isDisabled
+          ? this.formGroup.get(this.formControlName.value).disable()
+          : this.formGroup.get(this.formControlName.value).enable();
+      }
+    } else {
+      this.isDisabled ? this.formGroup.disable() : this.formGroup.enable();
+    }
     console.log(this.formGroup);
   }
 
@@ -38,7 +57,7 @@ export class AppComponent implements OnInit {
       { id: 1, name: 'JavaScript' },
       { id: 2, name: 'NodeJS' },
       { id: 3, name: 'Angular' },
-      { id: 4, name: 'ReactJS'}
+      { id: 4, name: 'ReactJS' },
     ];
 
     this.countryList = [
@@ -49,7 +68,7 @@ export class AppComponent implements OnInit {
       { id: 5, name: 'Thailand' },
       { id: 6, name: 'Brunei Darussalam' },
       { id: 7, name: 'Kamboja' },
-    ]
+    ];
   }
 
   private setFormGroupState(): void {
@@ -61,20 +80,21 @@ export class AppComponent implements OnInit {
       skills: [null],
       country: [{ id: 1, name: 'Indonesia' }],
       questionAnswerList: this.formBuilder.array([]),
-      hobbieList: this.formBuilder.array([])
+      hobbieList: this.formBuilder.array([]),
     });
 
-    this.questionAnswerListFormArray.push(this.formBuilder.group({
-      question: ['What is the best programming language in the world?'],
-      answer: ['NodeJS']
-    }));
+    this.questionAnswerListFormArray.push(
+      this.formBuilder.group({
+        question: ['What is the best programming language in the world?'],
+        answer: ['NodeJS'],
+      })
+    );
 
     this.hobbiesListFormArray.push(new FormControl('Code'));
   }
 
   public get questionAnswerListFormArray(): FormArray {
     return <FormArray>this.formGroup.get('questionAnswerList');
-    
   }
 
   public get hobbiesListFormArray(): FormArray {
@@ -82,10 +102,14 @@ export class AppComponent implements OnInit {
   }
 
   public handleAddNewQuestionAnswer(): void {
-    this.questionAnswerListFormArray.push(this.formBuilder.group({
-      question: [`Random Question ${this.questionAnswerListFormArray.length}`],
-      answer: [null]
-    }));
+    this.questionAnswerListFormArray.push(
+      this.formBuilder.group({
+        question: [
+          `Random Question ${this.questionAnswerListFormArray.length}`,
+        ],
+        answer: [null],
+      })
+    );
   }
 
   public handleAddNewHobbie(): void {
@@ -106,9 +130,11 @@ export class AppComponent implements OnInit {
 
   public handleChangeSkill(isChecked: boolean, index: number): void {
     const currentValue: Array<Skill> = this.formGroup.get('skills').value || [];
-    isChecked 
-    ? this.formGroup.get('skills').patchValue([...currentValue, this.skillList[index]])
-    : this.formGroup.patchValue(currentValue.splice(index, 1));
+    isChecked
+      ? this.formGroup
+          .get('skills')
+          .patchValue([...currentValue, this.skillList[index]])
+      : this.formGroup.patchValue(currentValue.splice(index, 1));
   }
 
   public handleCancel(): void {
@@ -125,11 +151,20 @@ export class AppComponent implements OnInit {
   }
 
   public isChecked(formControlValue: Array<Skill>, skill: Skill): boolean {
-    return (formControlValue || []).findIndex(value => JSON.stringify(value) === JSON.stringify(skill)) !== -1;
+    return (
+      (formControlValue || []).findIndex(
+        (value) => JSON.stringify(value) === JSON.stringify(skill)
+      ) !== -1
+    );
   }
 
-  public handleCompareCountry(firstCountry: Country, secondCountry: Country): boolean {
-    return firstCountry && secondCountry ? firstCountry.id === secondCountry.id : firstCountry === secondCountry
+  public handleCompareCountry(
+    firstCountry: Country,
+    secondCountry: Country
+  ): boolean {
+    return firstCountry && secondCountry
+      ? firstCountry.id === secondCountry.id
+      : firstCountry === secondCountry;
   }
 }
 
@@ -137,8 +172,8 @@ export interface BaseInterface {
   id: number;
   name: string;
 }
-interface Skill extends BaseInterface { }
+interface Skill extends BaseInterface {}
 
-interface Gender extends BaseInterface { }
+interface Gender extends BaseInterface {}
 
 interface Country extends BaseInterface {}

@@ -2,6 +2,19 @@
   <h4>Welcome to Angular Reactive Forms Tutorial</h4>
   <p>Let's build simple form with Angular</p>
 
+  <div class="form-group">
+    <input type="text" class="form-control" [formControl]="formControlName" />
+  </div>
+  <div class="d-flex justify-content-end">
+    <ngid-button (onClick)="handleDisableOrEnableForm()">
+      {{ isDisabled ? "Enabled" : "Disabled" }}
+      {{
+        formControlName.value
+          ? "formControl '" + formControlName.value + "'"
+          : "Form"
+      }}
+    </ngid-button>
+  </div>
   <form [formGroup]="formGroup">
     <div class="form-group">
       <label for="name">Name</label>
@@ -44,6 +57,7 @@
           [value]="gender"
           [checked]="formGroup.get('gender').value.id === gender.id"
           (change)="handleChangeGender(gender)"
+          [disabled]="formGroup.get('gender').disabled"
         />
         <label for="{{ 'gender' + i }}" class="custom-control-label">
           {{ gender.name }}
@@ -62,6 +76,7 @@
           class="custom-control-input"
           (change)="handleChangeSkill($event.target.checked, i)"
           [checked]="isChecked(formGroup.get('skills').value, skill)"
+          [disabled]="formGroup.get('skills').disabled"
         />
         <label for="{{ 'skill' + i }}" class="custom-control-label">
           {{ skill.name }}
@@ -79,16 +94,6 @@
         <option [ngValue]="country" *ngFor="let country of countryList">
           {{ country.name }}
         </option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="name">Hobbies</label>
-      <select class="custom-select">
-        <option value="">Select Hobbies</option>
-        <option value="1">Singing</option>
-        <option value="2">Develope</option>
-        <option value="3">Traveling</option>
-        <option value="4">Playing Guitar</option>
       </select>
     </div>
 
