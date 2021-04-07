@@ -80,6 +80,7 @@ export class AppComponent implements OnInit {
   private setFormGroupState(): void {
     this.formGroup = this.formBuilder.group({
       name: [null, Validators.required],
+      email: [null, [Validators.required, Validators.email]],
       age: [null, Validators.required],
       address: [null, Validators.required],
       gender: [null, Validators.required],

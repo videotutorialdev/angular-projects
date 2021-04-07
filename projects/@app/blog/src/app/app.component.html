@@ -48,6 +48,38 @@
       </small>
     </div>
     <div class="form-group">
+      <label for="name" class="required">Email</label>
+      <input
+        type="text"
+        class="form-control"
+        id="email"
+        formControlName="email"
+        [ngClass]="[
+          (formGroup.get('email').dirty || formGroup.get('email').touched) &&
+          formGroup.get('email').invalid
+            ? 'is-invalid'
+            : '',
+          (formGroup.get('email').dirty || formGroup.get('email').touched) &&
+          formGroup.get('email').valid
+            ? 'is-valid'
+            : ''
+        ]"
+      />
+      <small
+        class="text-danger"
+        *ngIf="
+          (formGroup.get('email').dirty || formGroup.get('email').touched) &&
+          formGroup.get('email').invalid
+        "
+      >
+        {{
+          formGroup.get("email").errors.required
+            ? "Data must be filled"
+            : "Email address is not valid"
+        }}
+      </small>
+    </div>
+    <div class="form-group">
       <label for="age">Age</label>
       <input
         type="number"
