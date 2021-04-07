@@ -1,5 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators
+} from '@angular/forms';
 @Component({
   selector: 'ngid-root',
   templateUrl: './app.component.html',
@@ -73,12 +79,12 @@ export class AppComponent implements OnInit {
 
   private setFormGroupState(): void {
     this.formGroup = this.formBuilder.group({
-      name: ['John Doe'],
-      age: [22],
-      address: ['Pluto'],
-      gender: [{ id: 1, name: 'Male' }],
-      skills: [null],
-      country: [{ id: 1, name: 'Indonesia' }],
+      name: [null, Validators.required],
+      age: [null, Validators.required],
+      address: [null, Validators.required],
+      gender: [null, Validators.required],
+      skills: [null, Validators.required],
+      country: [null, Validators.required],
       questionAnswerList: this.formBuilder.array([]),
       hobbieList: this.formBuilder.array([]),
     });
@@ -91,6 +97,20 @@ export class AppComponent implements OnInit {
     );
 
     this.hobbiesListFormArray.push(new FormControl('Code'));
+  }
+
+  public handleCancel(): void {
+    console.log('Info: Come from handleCancel');
+  }
+
+  public handleReset(): void {
+    this.formGroup.reset();
+  }
+
+  public handleSubmit(): void {
+    this.formGroup.markAllAsTouched();
+    console.log('Info: Come from handleSubmit');
+    console.log(this.formGroup);
   }
 
   public get questionAnswerListFormArray(): FormArray {
@@ -129,25 +149,17 @@ export class AppComponent implements OnInit {
   }
 
   public handleChangeSkill(isChecked: boolean, index: number): void {
+    this.formGroup.get('skills').markAsTouched();
     const currentValue: Array<Skill> = this.formGroup.get('skills').value || [];
     isChecked
       ? this.formGroup
           .get('skills')
           .patchValue([...currentValue, this.skillList[index]])
       : this.formGroup.patchValue(currentValue.splice(index, 1));
-  }
 
-  public handleCancel(): void {
-    console.log('Info: Come from handleCancel');
-  }
-
-  public handleReset(): void {
-    this.formGroup.reset();
-  }
-
-  public handleSubmit(): void {
-    console.log('Info: Come from handleSubmit');
-    console.log(this.formGroup.value);
+    if (this.formGroup.get('skills').value.length === 0) {
+      this.formGroup.get('skills').patchValue(null);
+    }
   }
 
   public isChecked(formControlValue: Array<Skill>, skill: Skill): boolean {

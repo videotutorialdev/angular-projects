@@ -19,3 +19,8 @@ div.btn-group {
     }
   }
 }
+
+label.required::after {
+  content: '*';
+  color: red;
+}

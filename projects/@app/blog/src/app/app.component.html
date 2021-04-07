@@ -1,6 +1,9 @@
 <div class="container my-4">
-  <h4>Welcome to Angular Reactive Forms Tutorial</h4>
-  <p>Let's build simple form with Angular</p>
+  <h4>Welcome to Angular Validators Tutorial</h4>
+  <p>
+    Let's validate our forms with Angular Validators or with our custom
+    Validators
+  </p>
 
   <div class="form-group">
     <input type="text" class="form-control" [formControl]="formControlName" />
@@ -17,13 +20,32 @@
   </div>
   <form [formGroup]="formGroup">
     <div class="form-group">
-      <label for="name">Name</label>
+      <label for="name" class="required">Name</label>
       <input
         type="text"
         class="form-control"
         id="name"
         formControlName="name"
+        [ngClass]="[
+          (formGroup.get('name').dirty || formGroup.get('name').touched) &&
+          formGroup.get('name').invalid
+            ? 'is-invalid'
+            : '',
+          (formGroup.get('name').dirty || formGroup.get('name').touched) &&
+          formGroup.get('name').valid
+            ? 'is-valid'
+            : ''
+        ]"
       />
+      <small
+        class="text-danger"
+        *ngIf="
+          (formGroup.get('name').dirty || formGroup.get('name').touched) &&
+          formGroup.get('name').invalid
+        "
+      >
+        Data Must Be Filled
+      </small>
     </div>
     <div class="form-group">
       <label for="age">Age</label>
@@ -32,7 +54,26 @@
         class="form-control"
         id="age"
         formControlName="age"
+        [ngClass]="[
+          (formGroup.get('age').dirty || formGroup.get('age').touched) &&
+          formGroup.get('age').invalid
+            ? 'is-invalid'
+            : '',
+          (formGroup.get('age').dirty || formGroup.get('age').touched) &&
+          formGroup.get('age').valid
+            ? 'is-valid'
+            : ''
+        ]"
       />
+      <small
+        class="text-danger"
+        *ngIf="
+          (formGroup.get('age').dirty || formGroup.get('age').touched) &&
+          formGroup.get('age').invalid
+        "
+      >
+        Data Must Be Filled
+      </small>
     </div>
     <div class="form-group">
       <label for="address">Address</label>
@@ -41,8 +82,30 @@
         class="form-control"
         id="address"
         formControlName="address"
+        [ngClass]="[
+          (formGroup.get('address').dirty ||
+            formGroup.get('address').touched) &&
+          formGroup.get('address').invalid
+            ? 'is-invalid'
+            : '',
+          (formGroup.get('address').dirty ||
+            formGroup.get('address').touched) &&
+          formGroup.get('address').valid
+            ? 'is-valid'
+            : ''
+        ]"
       >
       </textarea>
+      <small
+        class="text-danger"
+        *ngIf="
+          (formGroup.get('address').dirty ||
+            formGroup.get('address').touched) &&
+          formGroup.get('address').invalid
+        "
+      >
+        Data Must Be Filled
+      </small>
     </div>
     <div class="form-group">
       <label for="name">Gender</label>
@@ -55,14 +118,35 @@
           id="{{ 'gender' + i }}"
           class="custom-control-input"
           [value]="gender"
-          [checked]="formGroup.get('gender').value.id === gender.id"
+          [checked]="formGroup.get('gender').value?.id === gender.id"
           (change)="handleChangeGender(gender)"
           [disabled]="formGroup.get('gender').disabled"
+          [ngClass]="[
+            (formGroup.get('gender').dirty ||
+              formGroup.get('gender').touched) &&
+            formGroup.get('gender').invalid
+              ? 'is-invalid'
+              : '',
+            (formGroup.get('gender').dirty ||
+              formGroup.get('gender').touched) &&
+            formGroup.get('gender').valid
+              ? 'is-valid'
+              : ''
+          ]"
         />
         <label for="{{ 'gender' + i }}" class="custom-control-label">
           {{ gender.name }}
         </label>
       </div>
+      <small
+        class="text-danger"
+        *ngIf="
+          (formGroup.get('gender').dirty || formGroup.get('skills').touched) &&
+          formGroup.get('gender').invalid
+        "
+      >
+        Data Must Be Filled
+      </small>
     </div>
     <div class="form-group">
       <label for="name">Skills</label>
@@ -77,11 +161,32 @@
           (change)="handleChangeSkill($event.target.checked, i)"
           [checked]="isChecked(formGroup.get('skills').value, skill)"
           [disabled]="formGroup.get('skills').disabled"
+          [ngClass]="[
+            (formGroup.get('skills').dirty ||
+              formGroup.get('skills').touched) &&
+            formGroup.get('skills').invalid
+              ? 'is-invalid'
+              : '',
+            (formGroup.get('skills').dirty ||
+              formGroup.get('skills').touched) &&
+            formGroup.get('skills').valid
+              ? 'is-valid'
+              : ''
+          ]"
         />
         <label for="{{ 'skill' + i }}" class="custom-control-label">
           {{ skill.name }}
         </label>
       </div>
+      <small
+        class="text-danger"
+        *ngIf="
+          (formGroup.get('skills').dirty || formGroup.get('skills').touched) &&
+          formGroup.get('skills').invalid
+        "
+      >
+        Data Must Be Filled
+      </small>
     </div>
     <div class="form-group">
       <label for="name">Country</label>
@@ -89,12 +194,34 @@
         [compareWith]="handleCompareCountry"
         class="custom-select"
         formControlName="country"
+        [ngClass]="[
+          (formGroup.get('country').dirty ||
+            formGroup.get('country').touched) &&
+          formGroup.get('country').invalid
+            ? 'is-invalid'
+            : '',
+          (formGroup.get('country').dirty ||
+            formGroup.get('country').touched) &&
+          formGroup.get('country').valid
+            ? 'is-valid'
+            : ''
+        ]"
       >
         <option value="null">Select Country</option>
         <option [ngValue]="country" *ngFor="let country of countryList">
           {{ country.name }}
         </option>
       </select>
+      <small
+        class="text-danger"
+        *ngIf="
+          (formGroup.get('country').dirty ||
+            formGroup.get('country').touched) &&
+          formGroup.get('country').invalid
+        "
+      >
+        Data Must Be Filled
+      </small>
     </div>
 
     <div
