@@ -91,6 +91,30 @@
     </div>
 
     <div class="form-group">
+      <label for="birthDate">Birth Date</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="birthDate"
+        [ngClass]="[
+          (formGroup.get('birthDate').touched ||
+            formGroup.get('birthDate').dirty) &&
+          formGroup.get('birthDate').invalid
+            ? 'is-invalid'
+            : '',
+          (formGroup.get('birthDate').touched ||
+            formGroup.get('birthDate').dirty) &&
+          formGroup.get('birthDate').valid
+            ? 'is-valid'
+            : ''
+        ]"
+      />
+      <small class="text-danger" *ngIf="formGroup.get('birthDate').invalid">
+        Birth Date Should Be An Integer With Actual Length 4 Characters
+      </small>
+    </div>
+
+    <div class="form-group">
       <label for="name" class="required">Email</label>
       <input
         type="text"

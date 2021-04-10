@@ -82,6 +82,7 @@ export class AppComponent implements OnInit {
       name: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.minLength(7), Validators.maxLength(11)]],
+      birthDate: [null, Validators.pattern(/\d{4}/g)],
       age: [null, Validators.required],
       address: [null, Validators.required],
       gender: [null, Validators.required],
