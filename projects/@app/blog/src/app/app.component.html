@@ -79,8 +79,12 @@
         {{
           formGroup.get("password").errors.required
             ? "Data Must Be Filled"
-            : "Min Length Required is " +
+            : formGroup.get("password").errors.minlength
+            ? "Min Length Required is " +
               formGroup.get("password").errors.minlength.requiredLength +
+              " Characters"
+            : "Max Length Required is " +
+              formGroup.get("password").errors.maxlength.requiredLength +
               " Characters"
         }}
       </small>
