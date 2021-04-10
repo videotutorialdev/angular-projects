@@ -47,6 +47,45 @@
         Data Must Be Filled
       </small>
     </div>
+
+    <div class="form-group">
+      <label for="password" class="required">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        formControlName="password"
+        [ngClass]="[
+          (formGroup.get('password').dirty ||
+            formGroup.get('password').touched) &&
+          formGroup.get('password').invalid
+            ? 'is-invalid'
+            : '',
+          (formGroup.get('password').dirty ||
+            formGroup.get('password').touched) &&
+          formGroup.get('password').valid
+            ? 'is-valid'
+            : ''
+        ]"
+      />
+      <small
+        class="text-danger"
+        *ngIf="
+          (formGroup.get('password').dirty ||
+            formGroup.get('password').touched) &&
+          formGroup.get('password').invalid
+        "
+      >
+        {{
+          formGroup.get("password").errors.required
+            ? "Data Must Be Filled"
+            : "Min Length Required is " +
+              formGroup.get("password").errors.minlength.requiredLength +
+              " Characters"
+        }}
+      </small>
+    </div>
+
     <div class="form-group">
       <label for="name" class="required">Email</label>
       <input
