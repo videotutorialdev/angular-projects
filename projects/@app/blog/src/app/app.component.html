@@ -113,6 +113,8 @@
         {{
           formGroup.get("birthDate").errors.min
             ? "Minimum Year is " + formGroup.get("birthDate").errors.min.min
+            : formGroup.get("birthDate").errors.max
+            ? "Maximum Year is " + formGroup.get("birthDate").errors.max.max
             : "Birth Date Should Be An Integer With Actual Length 4 Characters"
         }}
       </small>

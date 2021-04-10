@@ -82,7 +82,7 @@ export class AppComponent implements OnInit {
       name: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.minLength(7), Validators.maxLength(11)]],
-      birthDate: [null, [Validators.pattern(/\d{4}/g), Validators.min(new Date().getFullYear() - 100)]],
+      birthDate: [null, [Validators.pattern(/\d{4}/g), Validators.min(new Date().getFullYear() - 100), Validators.max(new Date().getFullYear() - 21)]],
       age: [null, Validators.required],
       address: [null, Validators.required],
       gender: [null, Validators.required],
@@ -91,6 +91,8 @@ export class AppComponent implements OnInit {
       questionAnswerList: this.formBuilder.array([]),
       hobbieList: this.formBuilder.array([]),
     });
+
+    2021 - 21
 
     this.questionAnswerListFormArray.push(
       this.formBuilder.group({
