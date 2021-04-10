@@ -20,6 +20,36 @@
   </div>
   <form [formGroup]="formGroup">
     <div class="form-group">
+      <label for="captcha">Captcha - Answer</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="captcha"
+        [ngClass]="[
+          (formGroup.get('captcha').dirty ||
+            formGroup.get('captcha').touched) &&
+          formGroup.get('captcha').invalid
+            ? 'is-invalid'
+            : '',
+          (formGroup.get('captcha').dirty || formGroup.get('name').touched) &&
+          formGroup.get('captcha').valid
+            ? 'is-valid'
+            : ''
+        ]"
+      />
+      <small
+        class="text-danger"
+        *ngIf="
+          (formGroup.get('captcha').dirty ||
+            formGroup.get('captcha').touched) &&
+          formGroup.get('captcha').invalid
+        "
+      >
+        {{ formGroup.get("captcha").errors.message }}
+      </small>
+    </div>
+
+    <div class="form-group">
       <label for="name" class="required">Name</label>
       <input
         type="text"

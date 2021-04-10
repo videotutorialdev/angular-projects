@@ -1,9 +1,12 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {
+  AbstractControl,
   FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
+  ValidationErrors,
+  ValidatorFn,
   Validators
 } from '@angular/forms';
 @Component({
@@ -90,9 +93,8 @@ export class AppComponent implements OnInit {
       country: [null, Validators.required],
       questionAnswerList: this.formBuilder.array([]),
       hobbieList: this.formBuilder.array([]),
+      captcha: [null, this.myCustomValidator(1234)]
     });
-
-    2021 - 21
 
     this.questionAnswerListFormArray.push(
       this.formBuilder.group({
@@ -102,6 +104,17 @@ export class AppComponent implements OnInit {
     );
 
     this.hobbiesListFormArray.push(new FormControl('Code'));
+  }
+
+  public myCustomValidator(captchaAnswer: number): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (!control.value || control.value && control.value !== captchaAnswer.toString()) {
+        return {
+          message: 'Oooppsss...!!! Invalid Captcha Answer'
+        }
+      }
+      return null;
+    }
   }
 
   public handleCancel(): void {
