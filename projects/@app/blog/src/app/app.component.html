@@ -1,9 +1,6 @@
 <div class="container my-4">
-  <h4>Welcome to Angular Validators Tutorial</h4>
-  <p>
-    Let's validate our forms with Angular Validators or with our custom
-    Validators
-  </p>
+  <h4>Welcome to Angular Custom Validators Tutorial</h4>
+  <p>Let's validate our forms with Our Angular Custom Validators</p>
 
   <div class="form-group">
     <input type="text" class="form-control" [formControl]="formControlName" />
@@ -74,7 +71,7 @@
           formGroup.get('name').invalid
         "
       >
-        Data Must Be Filled
+        {{ formGroup.get("name").errors.message }}
       </small>
     </div>
 

@@ -9,6 +9,7 @@ import {
   ValidatorFn,
   Validators
 } from '@angular/forms';
+import { Validators as CustomValidator } from 'validators';
 @Component({
   selector: 'ngid-root',
   templateUrl: './app.component.html',
@@ -82,7 +83,7 @@ export class AppComponent implements OnInit {
 
   private setFormGroupState(): void {
     this.formGroup = this.formBuilder.group({
-      name: [null, Validators.required],
+      name: [[], CustomValidator.required()],
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.minLength(7), Validators.maxLength(11)]],
       birthDate: [null, [Validators.pattern(/\d{4}/g), Validators.min(new Date().getFullYear() - 100), Validators.max(new Date().getFullYear() - 21)]],
