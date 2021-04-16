@@ -10,6 +10,10 @@
       "@components/popup": [
         "dist/components/popup/components-popup",
         "dist/components/popup"
+      ],
+      "validators": [
+        "dist/validators/validators",
+        "dist/validators"
       ]
     },
     "baseUrl": "./",
