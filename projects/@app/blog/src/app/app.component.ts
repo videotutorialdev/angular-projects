@@ -83,7 +83,12 @@ export class AppComponent implements OnInit {
 
   private setFormGroupState(): void {
     this.formGroup = this.formBuilder.group({
-      name: [11111, [CustomValidator.required(), CustomValidator.minLength(4, "Name Length Should Not Less Than 4 Characters")]],
+      name: [null, [
+          CustomValidator.required(), 
+          CustomValidator.minLength(4, "Name Length Should Not Less Than 4 Characters"),
+          CustomValidator.maxLength(7, "Name Length Should Not Greater Than 7 Characters")
+        ]
+      ],
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.minLength(7), Validators.maxLength(11)]],
       birthDate: [null, [Validators.pattern(/\d{4}/g), Validators.min(new Date().getFullYear() - 100), Validators.max(new Date().getFullYear() - 21)]],
