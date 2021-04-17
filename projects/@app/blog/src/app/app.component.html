@@ -146,6 +146,38 @@
         }}
       </small>
     </div>
+
+    <div class="form-group">
+      <label for="birthDate">Year Of Birth</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="yearOfBirth"
+        [ngClass]="[
+          (formGroup.get('yearOfBirth').touched ||
+            formGroup.get('yearOfBirth').dirty) &&
+          formGroup.get('yearOfBirth').invalid
+            ? 'is-invalid'
+            : '',
+          (formGroup.get('yearOfBirth').touched ||
+            formGroup.get('yearOfBirth').dirty) &&
+          formGroup.get('yearOfBirth').valid
+            ? 'is-valid'
+            : ''
+        ]"
+      />
+      <small
+        class="text-danger"
+        *ngIf="
+          (formGroup.get('yearOfBirth').dirty ||
+            formGroup.get('yearOfBirth').touched) &&
+          formGroup.get('yearOfBirth').invalid
+        "
+      >
+        {{ formGroup.get("yearOfBirth").errors.message }}
+      </small>
+    </div>
+
     <div class="form-group">
       <label for="name" class="required">Email</label>
       <input
