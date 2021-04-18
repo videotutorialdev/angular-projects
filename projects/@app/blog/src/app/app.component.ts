@@ -92,7 +92,7 @@ export class AppComponent implements OnInit {
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.minLength(7), Validators.maxLength(11)]],
       birthDate: [null, [Validators.pattern(/\d{4}/g), Validators.min(new Date().getFullYear() - 100), Validators.max(new Date().getFullYear() - 21)]],
-      yearOfBirth: [null, [CustomValidator.required(), CustomValidator.actualLength(4)]],
+      yearOfBirth: [null, [CustomValidator.required(), CustomValidator.min(new Date().getFullYear() - 100)]],
       age: [null, Validators.required],
       address: [null, Validators.required],
       gender: [null, Validators.required],

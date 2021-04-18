@@ -1,8 +1,7 @@
-import { AbstractControl, ValidatorFn } from '@angular/forms';
-
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 export class MaxLengthValidator {
   public static maxLength(maxLength: number, message?: string): ValidatorFn {
-    return (AC: AbstractControl): { [key: string]: string | number } => {
+    return (AC: AbstractControl): ValidationErrors => {
       if (AC.value && AC.value.length > maxLength) {
         return {
           maxLength: maxLength,

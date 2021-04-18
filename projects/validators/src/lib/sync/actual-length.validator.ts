@@ -1,11 +1,10 @@
-import { AbstractControl, ValidatorFn } from '@angular/forms';
-
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 export class ActualLengthValidator {
   public static actualLength(
     actualLength: number,
     message?: string
   ): ValidatorFn {
-    return (AC: AbstractControl): { [key: string]: string | number } => {
+    return (AC: AbstractControl): ValidationErrors => {
       if (
         AC.value &&
         (AC.value.length < actualLength || AC.value.length > actualLength)
