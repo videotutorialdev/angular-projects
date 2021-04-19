@@ -97,7 +97,7 @@ export class AppComponent implements OnInit {
           ),
         ],
       ],
-      email: [null, [Validators.required, Validators.email]],
+      email: [null, [CustomValidator.required(), CustomValidator.email()]],
       password: [
         null,
         [
