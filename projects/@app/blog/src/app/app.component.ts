@@ -101,11 +101,12 @@ export class AppComponent implements OnInit {
       password: [
         null,
         [
-          Validators.required,
-          Validators.minLength(7),
-          Validators.maxLength(11),
+          CustomValidator.required(),
+          CustomValidator.minLength(7),
+          CustomValidator.maxLength(11),
         ],
       ],
+      confirmPassword: [null, [CustomValidator.required(), CustomValidator.matchPassword()]],
       birthDate: [
         null,
         [

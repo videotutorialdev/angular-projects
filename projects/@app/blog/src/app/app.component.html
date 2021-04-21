@@ -78,7 +78,7 @@
     <div class="form-group">
       <label for="password" class="required">Password</label>
       <input
-        type="password"
+        type="text"
         class="form-control"
         id="password"
         formControlName="password"
@@ -103,17 +103,39 @@
           formGroup.get('password').invalid
         "
       >
-        {{
-          formGroup.get("password").errors.required
-            ? "Data Must Be Filled"
-            : formGroup.get("password").errors.minlength
-            ? "Min Length Required is " +
-              formGroup.get("password").errors.minlength.requiredLength +
-              " Characters"
-            : "Max Length Required is " +
-              formGroup.get("password").errors.maxlength.requiredLength +
-              " Characters"
-        }}
+        {{ formGroup.get("password").errors.message }}
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword" class="required">Confirm Password</label>
+      <input
+        type="text"
+        class="form-control"
+        id="confirmPassword"
+        formControlName="confirmPassword"
+        [ngClass]="[
+          (formGroup.get('confirmPassword').dirty ||
+            formGroup.get('confirmPassword').touched) &&
+          formGroup.get('confirmPassword').invalid
+            ? 'is-invalid'
+            : '',
+          (formGroup.get('confirmPassword').dirty ||
+            formGroup.get('confirmPassword').touched) &&
+          formGroup.get('confirmPassword').valid
+            ? 'is-valid'
+            : ''
+        ]"
+      />
+      <small
+        class="text-danger"
+        *ngIf="
+          (formGroup.get('confirmPassword').dirty ||
+            formGroup.get('confirmPassword').touched) &&
+          formGroup.get('confirmPassword').invalid
+        "
+      >
+        {{ formGroup.get("confirmPassword").errors.message }}
       </small>
     </div>
 
