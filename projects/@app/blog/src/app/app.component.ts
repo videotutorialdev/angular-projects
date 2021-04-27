@@ -110,9 +110,10 @@ export class AppComponent implements OnInit {
       birthDate: [
         null,
         [
-          Validators.pattern(/\d{4}/g),
-          Validators.min(new Date().getFullYear() - 100),
-          Validators.max(new Date().getFullYear() - 21),
+          CustomValidator.required(),
+          CustomValidator.pattern(/\d{4}/g, "Birth Date Must Be An Integer"),
+          CustomValidator.min(new Date().getFullYear() - 100),
+          CustomValidator.max(new Date().getFullYear() - 21),
         ],
       ],
       yearOfBirth: [

@@ -158,14 +158,15 @@
             : ''
         ]"
       />
-      <small class="text-danger" *ngIf="formGroup.get('birthDate').invalid">
-        {{
-          formGroup.get("birthDate").errors.min
-            ? "Minimum Year is " + formGroup.get("birthDate").errors.min.min
-            : formGroup.get("birthDate").errors.max
-            ? "Maximum Year is " + formGroup.get("birthDate").errors.max.max
-            : "Birth Date Should Be An Integer With Actual Length 4 Characters"
-        }}
+      <small
+        class="text-danger"
+        *ngIf="
+          (formGroup.get('birthDate').touched ||
+            formGroup.get('birthDate').dirty) &&
+          formGroup.get('birthDate').invalid
+        "
+      >
+        {{ formGroup.get("birthDate").errors.message }}
       </small>
     </div>
 
