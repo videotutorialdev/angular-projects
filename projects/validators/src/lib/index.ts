@@ -1,3 +1,5 @@
+
+import { Validators as AngularValidators } from "@angular/forms";
 import { ActualLengthValidator } from "./sync/actual-length.validator";
 import { EmailValidator } from "./sync/email.validator";
 import { MatchPasswordValidator } from "./sync/match-password.validator";
@@ -9,7 +11,11 @@ import { MinValidator } from "./sync/min.validator";
 import { PatternValidator } from "./sync/pattern.validator";
 import { RequiredValidator } from "./sync/required.validator";
 export class Validators {
-    public static actualLength = ActualLengthValidator.actualLength
+    // angular validators
+    public static compose = AngularValidators.compose;
+    public static composeAsync = AngularValidators.composeAsync;
+    // custom validators
+    public static actualLength = ActualLengthValidator.actualLength;
     public static email = EmailValidator.email;
     public static match = MatchValidator.match;
     public static matchPassword = MatchPasswordValidator.matchPassword;

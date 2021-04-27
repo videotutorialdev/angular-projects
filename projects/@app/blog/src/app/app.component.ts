@@ -6,10 +6,9 @@ import {
   FormControl,
   FormGroup,
   ValidationErrors,
-  ValidatorFn,
-  Validators
+  ValidatorFn
 } from '@angular/forms';
-import { Validators as CustomValidator } from 'validators';
+import { Validators } from 'validators';
 @Component({
   selector: 'ngid-root',
   templateUrl: './app.component.html',
@@ -86,49 +85,49 @@ export class AppComponent implements OnInit {
       name: [
         null,
         [
-          CustomValidator.required(),
-          CustomValidator.minLength(
+          Validators.required(),
+          Validators.minLength(
             4,
             'Name Length Should Not Less Than 4 Characters'
           ),
-          CustomValidator.maxLength(
+          Validators.maxLength(
             7,
             'Name Length Should Not Greater Than 7 Characters'
           ),
         ],
       ],
-      email: [null, [CustomValidator.required(), CustomValidator.email()]],
+      email: [null, [Validators.required(), Validators.email()]],
       password: [
         null,
         [
-          CustomValidator.required(),
-          CustomValidator.minLength(7),
-          CustomValidator.maxLength(11),
+          Validators.required(),
+          Validators.minLength(7),
+          Validators.maxLength(11),
         ],
       ],
-      confirmPassword: [null, [CustomValidator.required(), CustomValidator.matchPassword()]],
+      confirmPassword: [null, [Validators.required(), Validators.matchPassword()]],
       birthDate: [
         null,
         [
-          CustomValidator.required(),
-          CustomValidator.pattern(/\d{4}/g, "Birth Date Must Be An Integer"),
-          CustomValidator.min(new Date().getFullYear() - 100),
-          CustomValidator.max(new Date().getFullYear() - 21),
+          Validators.required(),
+          Validators.pattern(/\d{4}/g, "Birth Date Must Be An Integer"),
+          Validators.min(new Date().getFullYear() - 100),
+          Validators.max(new Date().getFullYear() - 21),
         ],
       ],
       yearOfBirth: [
         null,
         [
-          CustomValidator.required(),
-          CustomValidator.min(new Date().getFullYear() - 100),
-          CustomValidator.max(new Date().getFullYear() - 18, "Must be 18 Years Old"),
+          Validators.required(),
+          Validators.min(new Date().getFullYear() - 100),
+          Validators.max(new Date().getFullYear() - 18, "Must be 18 Years Old"),
         ],
       ],
-      age: [null, Validators.required],
-      address: [null, Validators.required],
-      gender: [null, Validators.required],
-      skills: [null, Validators.required],
-      country: [null, Validators.required],
+      age: [null, Validators.required()],
+      address: [null, Validators.required()],
+      gender: [null, Validators.required()],
+      skills: [null, Validators.required()],
+      country: [null, Validators.required()],
       questionAnswerList: this.formBuilder.array([]),
       hobbieList: this.formBuilder.array([]),
       captcha: [null, this.myCustomValidator(1234)],
