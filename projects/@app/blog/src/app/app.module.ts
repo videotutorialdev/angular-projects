@@ -5,14 +5,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ButtonModule } from '@components/button';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PopupModule } from 'projects/components/popup/src/public-api';
+import { AppCustomInputComponent } from './app-custom-input/app-custom-input.component';
 import { AppComponent } from './app.component';
 import { PopupLoginComponent } from './popup-login/popup-login.component';
-
 
 @NgModule({
   declarations: [
     AppComponent,
-    PopupLoginComponent
+    PopupLoginComponent,
+    AppCustomInputComponent
   ],
   imports: [
     BrowserModule,

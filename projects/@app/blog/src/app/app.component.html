@@ -1,6 +1,6 @@
 <div class="container my-4">
-  <h4>Welcome to Angular Custom Validators Tutorial</h4>
-  <p>Let's validate our forms with Our Angular Custom Validators</p>
+  <h4>Welcome to Angular Custom Forms Tutorial</h4>
+  <p>Let's build our custom input with Our Angular</p>
 
   <div class="form-group">
     <input type="text" class="form-control" [formControl]="formControlName" />
@@ -17,245 +17,62 @@
   </div>
   <form [formGroup]="formGroup">
     <div class="form-group">
+      <label>Custom Input</label>
+      <app-custom-input
+        formControlName="fullName"
+        placeholder="Full Name"
+      ></app-custom-input>
+    </div>
+
+    <ngid-button (onClick)="handleShowCustomInputValue()"
+      >Show Custom Input Value</ngid-button
+    >
+    <br />
+    <br />
+
+    <div class="form-group">
       <label for="captcha">Captcha - Answer</label>
-      <input
-        type="text"
-        class="form-control"
-        formControlName="captcha"
-        [ngClass]="[
-          (formGroup.get('captcha').dirty ||
-            formGroup.get('captcha').touched) &&
-          formGroup.get('captcha').invalid
-            ? 'is-invalid'
-            : '',
-          (formGroup.get('captcha').dirty || formGroup.get('name').touched) &&
-          formGroup.get('captcha').valid
-            ? 'is-valid'
-            : ''
-        ]"
-      />
-      <small
-        class="text-danger"
-        *ngIf="
-          (formGroup.get('captcha').dirty ||
-            formGroup.get('captcha').touched) &&
-          formGroup.get('captcha').invalid
-        "
-      >
-        {{ formGroup.get("captcha").errors.message }}
-      </small>
+      <app-custom-input formControlName="captcha"></app-custom-input>
     </div>
 
     <div class="form-group">
       <label for="name" class="required">Name</label>
-      <input
-        type="text"
-        class="form-control"
-        id="name"
-        formControlName="name"
-        [ngClass]="[
-          (formGroup.get('name').dirty || formGroup.get('name').touched) &&
-          formGroup.get('name').invalid
-            ? 'is-invalid'
-            : '',
-          (formGroup.get('name').dirty || formGroup.get('name').touched) &&
-          formGroup.get('name').valid
-            ? 'is-valid'
-            : ''
-        ]"
-      />
-      <small
-        class="text-danger"
-        *ngIf="
-          (formGroup.get('name').dirty || formGroup.get('name').touched) &&
-          formGroup.get('name').invalid
-        "
-      >
-        {{ formGroup.get("name").errors.message }}
-      </small>
+      <app-custom-input formControlName="name"></app-custom-input>
     </div>
 
     <div class="form-group">
       <label for="password" class="required">Password</label>
-      <input
-        type="text"
-        class="form-control"
-        id="password"
+      <app-custom-input
         formControlName="password"
-        [ngClass]="[
-          (formGroup.get('password').dirty ||
-            formGroup.get('password').touched) &&
-          formGroup.get('password').invalid
-            ? 'is-invalid'
-            : '',
-          (formGroup.get('password').dirty ||
-            formGroup.get('password').touched) &&
-          formGroup.get('password').valid
-            ? 'is-valid'
-            : ''
-        ]"
-      />
-      <small
-        class="text-danger"
-        *ngIf="
-          (formGroup.get('password').dirty ||
-            formGroup.get('password').touched) &&
-          formGroup.get('password').invalid
-        "
-      >
-        {{ formGroup.get("password").errors.message }}
-      </small>
+        type="password"
+      ></app-custom-input>
     </div>
 
     <div class="form-group">
       <label for="confirmPassword" class="required">Confirm Password</label>
-      <input
-        type="text"
-        class="form-control"
-        id="confirmPassword"
+      <app-custom-input
         formControlName="confirmPassword"
-        [ngClass]="[
-          (formGroup.get('confirmPassword').dirty ||
-            formGroup.get('confirmPassword').touched) &&
-          formGroup.get('confirmPassword').invalid
-            ? 'is-invalid'
-            : '',
-          (formGroup.get('confirmPassword').dirty ||
-            formGroup.get('confirmPassword').touched) &&
-          formGroup.get('confirmPassword').valid
-            ? 'is-valid'
-            : ''
-        ]"
-      />
-      <small
-        class="text-danger"
-        *ngIf="
-          (formGroup.get('confirmPassword').dirty ||
-            formGroup.get('confirmPassword').touched) &&
-          formGroup.get('confirmPassword').invalid
-        "
-      >
-        {{ formGroup.get("confirmPassword").errors.message }}
-      </small>
+        type="password"
+      ></app-custom-input>
     </div>
 
     <div class="form-group">
       <label for="birthDate">Birth Date</label>
-      <input
-        type="text"
-        class="form-control"
-        formControlName="birthDate"
-        [ngClass]="[
-          (formGroup.get('birthDate').touched ||
-            formGroup.get('birthDate').dirty) &&
-          formGroup.get('birthDate').invalid
-            ? 'is-invalid'
-            : '',
-          (formGroup.get('birthDate').touched ||
-            formGroup.get('birthDate').dirty) &&
-          formGroup.get('birthDate').valid
-            ? 'is-valid'
-            : ''
-        ]"
-      />
-      <small
-        class="text-danger"
-        *ngIf="
-          (formGroup.get('birthDate').touched ||
-            formGroup.get('birthDate').dirty) &&
-          formGroup.get('birthDate').invalid
-        "
-      >
-        {{ formGroup.get("birthDate").errors.message }}
-      </small>
+      <app-custom-input formControlName="birthDate"></app-custom-input>
     </div>
 
     <div class="form-group">
       <label for="birthDate">Year Of Birth</label>
-      <input
-        type="text"
-        class="form-control"
-        formControlName="yearOfBirth"
-        [ngClass]="[
-          (formGroup.get('yearOfBirth').touched ||
-            formGroup.get('yearOfBirth').dirty) &&
-          formGroup.get('yearOfBirth').invalid
-            ? 'is-invalid'
-            : '',
-          (formGroup.get('yearOfBirth').touched ||
-            formGroup.get('yearOfBirth').dirty) &&
-          formGroup.get('yearOfBirth').valid
-            ? 'is-valid'
-            : ''
-        ]"
-      />
-      <small
-        class="text-danger"
-        *ngIf="
-          (formGroup.get('yearOfBirth').dirty ||
-            formGroup.get('yearOfBirth').touched) &&
-          formGroup.get('yearOfBirth').invalid
-        "
-      >
-        {{ formGroup.get("yearOfBirth").errors.message }}
-      </small>
+      <app-custom-input formControlName="yearOfBirth"></app-custom-input>
     </div>
 
     <div class="form-group">
       <label for="name" class="required">Email</label>
-      <input
-        type="text"
-        class="form-control"
-        id="email"
-        formControlName="email"
-        [ngClass]="[
-          (formGroup.get('email').dirty || formGroup.get('email').touched) &&
-          formGroup.get('email').invalid
-            ? 'is-invalid'
-            : '',
-          (formGroup.get('email').dirty || formGroup.get('email').touched) &&
-          formGroup.get('email').valid
-            ? 'is-valid'
-            : ''
-        ]"
-      />
-      <small
-        class="text-danger"
-        *ngIf="
-          (formGroup.get('email').dirty || formGroup.get('email').touched) &&
-          formGroup.get('email').invalid
-        "
-      >
-        {{ formGroup.get("email").errors.message }}
-      </small>
+      <app-custom-input formControlName="email"></app-custom-input>
     </div>
     <div class="form-group">
       <label for="age">Age</label>
-      <input
-        type="number"
-        class="form-control"
-        id="age"
-        formControlName="age"
-        [ngClass]="[
-          (formGroup.get('age').dirty || formGroup.get('age').touched) &&
-          formGroup.get('age').invalid
-            ? 'is-invalid'
-            : '',
-          (formGroup.get('age').dirty || formGroup.get('age').touched) &&
-          formGroup.get('age').valid
-            ? 'is-valid'
-            : ''
-        ]"
-      />
-      <small
-        class="text-danger"
-        *ngIf="
-          (formGroup.get('age').dirty || formGroup.get('age').touched) &&
-          formGroup.get('age').invalid
-        "
-      >
-        {{ formGroup.get("age").errors.message }}
-      </small>
+      <app-custom-input formControlName="age"></app-custom-input>
     </div>
     <div class="form-group">
       <label for="address">Address</label>

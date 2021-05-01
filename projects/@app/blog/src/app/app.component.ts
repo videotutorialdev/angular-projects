@@ -131,6 +131,7 @@ export class AppComponent implements OnInit {
       questionAnswerList: this.formBuilder.array([]),
       hobbieList: this.formBuilder.array([]),
       captcha: [null, this.myCustomValidator(1234)],
+      fullName: [null, [Validators.required(), Validators.minLength(4), Validators.maxLength(7)]]
     });
 
     this.questionAnswerListFormArray.push(
@@ -141,6 +142,11 @@ export class AppComponent implements OnInit {
     );
 
     this.hobbiesListFormArray.push(new FormControl('Code'));
+  }
+
+  public handleShowCustomInputValue(): void {
+    console.log("Info: Come from handleShowCustomInputValue");
+    console.log(this.formGroup.get("fullName").value);
   }
 
   public myCustomValidator(captchaAnswer: number): ValidatorFn {
