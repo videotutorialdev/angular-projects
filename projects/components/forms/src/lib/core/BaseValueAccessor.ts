@@ -1,24 +1,25 @@
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { Component, forwardRef, Input, OnInit, Provider } from '@angular/core';
 import {
     AbstractControl,
     ControlContainer,
     ControlValueAccessor,
-
     FormGroup,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
+
+export function makeProvider(componentTarget: any): Provider {
+  return {
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => componentTarget),
+    multi: true,
+  };
+}
+
 @Component({
-  selector: 'app-custom-input',
-  templateUrl: './app-custom-input.component.html',
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => AppCustomInputComponent),
-      multi: true,
-    },
-  ],
+  template: '',
 })
-export class AppCustomInputComponent implements OnInit, ControlValueAccessor {
+export abstract class BaseValueAccessor
+  implements OnInit, ControlValueAccessor {
   @Input() formControlName: string;
   @Input() placeholder: string;
   @Input() type: string;
@@ -32,11 +33,14 @@ export class AppCustomInputComponent implements OnInit, ControlValueAccessor {
   public formGroup: FormGroup;
   public formControl: AbstractControl;
 
+  protected abstract onInit(): void;
+
   constructor(private controlContainer: ControlContainer) {}
 
   ngOnInit() {
     this.setFormGroupState();
     this.setFormControlState();
+    this.onInit();
   }
 
   private setFormGroupState(): void {
@@ -44,15 +48,21 @@ export class AppCustomInputComponent implements OnInit, ControlValueAccessor {
   }
 
   private setFormControlState(): void {
-      this.formControl = this.formGroup.get(this.formControlName);
+    this.formControl = this.formGroup.get(this.formControlName);
   }
 
   public get isValid(): boolean {
-      return (this.formControl.dirty || this.formControl.touched) && this.formControl.valid;
+    return (
+      (this.formControl.dirty || this.formControl.touched) &&
+      this.formControl.valid
+    );
   }
 
   public get isInvalid(): boolean {
-    return (this.formControl.dirty || this.formControl.touched) && this.formControl.invalid;
+    return (
+      (this.formControl.dirty || this.formControl.touched) &&
+      this.formControl.invalid
+    );
   }
 
   writeValue(value: any): void {
