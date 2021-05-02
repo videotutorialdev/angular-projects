@@ -24,6 +24,9 @@ export abstract class BaseValueAccessor
   @Input() placeholder: string;
   @Input() type: string;
   @Input() size: 'SM' | 'MD' | 'LG';
+  @Input() options: Array<any>;
+  @Input() optionViewPath: string;
+  @Input() optionValuePath: string;
 
   public value: any;
   public isDisabled: boolean;

@@ -144,38 +144,12 @@
     </div>
     <div class="form-group">
       <label for="name">Country</label>
-      <select
-        [compareWith]="handleCompareCountry"
-        class="custom-select"
+      <ngid-select
         formControlName="country"
-        [ngClass]="[
-          (formGroup.get('country').dirty ||
-            formGroup.get('country').touched) &&
-          formGroup.get('country').invalid
-            ? 'is-invalid'
-            : '',
-          (formGroup.get('country').dirty ||
-            formGroup.get('country').touched) &&
-          formGroup.get('country').valid
-            ? 'is-valid'
-            : ''
-        ]"
-      >
-        <option value="null">Select Country</option>
-        <option [ngValue]="country" *ngFor="let country of countryList">
-          {{ country.name }}
-        </option>
-      </select>
-      <small
-        class="text-danger"
-        *ngIf="
-          (formGroup.get('country').dirty ||
-            formGroup.get('country').touched) &&
-          formGroup.get('country').invalid
-        "
-      >
-        {{ formGroup.get("country").errors.message }}
-      </small>
+        [options]="countryList"
+        placeholder="Select Country"
+        optionValuePath="isoCode"
+      ></ngid-select>
     </div>
     <div
       class="p-4 border border-rounded mb-4"

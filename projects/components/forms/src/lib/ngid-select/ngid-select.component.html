@@ -1,0 +1,17 @@
+<select
+  [compareWith]="handleCompareWith"
+  [formControl]="formControl"
+  class="custom-select"
+  [ngClass]="[isValid ? 'is-valid' : '', isInvalid ? 'is-invalid' : '']"
+>
+  <option [ngValue]="null" *ngIf="placeholder">{{ placeholder }}</option>
+  <option
+    [ngValue]="optionValuePath ? option[optionValuePath] : option"
+    *ngFor="let option of options"
+  >
+    {{ optionViewPath ? option[optionViewPath] : option.name || option }}
+  </option>
+</select>
+<small class="text-danger" *ngIf="isInvalid">
+  {{ formControl.errors.message }}
+</small>

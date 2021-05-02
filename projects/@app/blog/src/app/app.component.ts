@@ -70,13 +70,13 @@ export class AppComponent implements OnInit {
     ];
 
     this.countryList = [
-      { id: 1, name: 'Indonesia' },
-      { id: 2, name: 'Malaysia' },
-      { id: 3, name: 'Singapura' },
-      { id: 4, name: 'Filipina' },
-      { id: 5, name: 'Thailand' },
-      { id: 6, name: 'Brunei Darussalam' },
-      { id: 7, name: 'Kamboja' },
+      { id: 1, name: 'Indonesia', isoCode: 'IDN' },
+      { id: 2, name: 'Malaysia', isoCode: 'MYS' },
+      { id: 3, name: 'Singapura', isoCode: 'SGP' },
+      { id: 4, name: 'Filipina', isoCode: 'PHL' },
+      { id: 5, name: 'Thailand', isoCode: 'THA' },
+      { id: 6, name: 'Brunei Darussalam', isoCode: 'BRN' },
+      { id: 7, name: 'Kamboja', isoCode: 'KHM' },
     ];
   }
 
@@ -130,7 +130,7 @@ export class AppComponent implements OnInit {
       address: [null, Validators.required()],
       gender: [null, Validators.required()],
       skills: [null, Validators.required()],
-      country: [null, Validators.required()],
+      country: ['IDN', Validators.required()],
       questionAnswerList: this.formBuilder.array([]),
       hobbieList: this.formBuilder.array([]),
       captcha: [null, this.myCustomValidator(1234)],
@@ -249,4 +249,6 @@ interface Skill extends BaseInterface {}
 
 interface Gender extends BaseInterface {}
 
-interface Country extends BaseInterface {}
+interface Country extends BaseInterface {
+  isoCode: string;
+}
