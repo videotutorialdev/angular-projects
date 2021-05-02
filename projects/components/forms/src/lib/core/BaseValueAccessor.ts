@@ -1,10 +1,10 @@
 import { Component, forwardRef, Input, OnInit, Provider } from '@angular/core';
 import {
-    AbstractControl,
-    ControlContainer,
-    ControlValueAccessor,
-    FormGroup,
-    NG_VALUE_ACCESSOR
+  AbstractControl,
+  ControlContainer,
+  ControlValueAccessor,
+  FormGroup,
+  NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 
 export function makeProvider(componentTarget: any): Provider {
@@ -23,6 +23,7 @@ export abstract class BaseValueAccessor
   @Input() formControlName: string;
   @Input() placeholder: string;
   @Input() type: string;
+  @Input() size: 'SM' | 'MD' | 'LG';
 
   public value: any;
   public isDisabled: boolean;
@@ -33,13 +34,22 @@ export abstract class BaseValueAccessor
   public formGroup: FormGroup;
   public formControl: AbstractControl;
 
+  public classNameSize: string;
+
   protected abstract onInit(): void;
+
+  private classNameObjectValue = {
+    SM: 'form-control-sm',
+    MD: 'form-control-md',
+    LG: 'form-control-lg',
+  };
 
   constructor(private controlContainer: ControlContainer) {}
 
   ngOnInit() {
     this.setFormGroupState();
     this.setFormControlState();
+    this.setClassNameSizeState();
     this.onInit();
   }
 
@@ -49,6 +59,11 @@ export abstract class BaseValueAccessor
 
   private setFormControlState(): void {
     this.formControl = this.formGroup.get(this.formControlName);
+  }
+
+  private setClassNameSizeState(): void {
+    const size = this.size || 'MD';
+    this.classNameSize = this.classNameObjectValue[size];
   }
 
   public get isValid(): boolean {

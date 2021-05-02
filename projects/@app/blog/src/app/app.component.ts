@@ -6,7 +6,7 @@ import {
   FormControl,
   FormGroup,
   ValidationErrors,
-  ValidatorFn
+  ValidatorFn,
 } from '@angular/forms';
 import { Validators } from 'validators';
 @Component({
@@ -105,12 +105,15 @@ export class AppComponent implements OnInit {
           Validators.maxLength(11),
         ],
       ],
-      confirmPassword: [null, [Validators.required(), Validators.matchPassword()]],
+      confirmPassword: [
+        null,
+        [Validators.required(), Validators.matchPassword()],
+      ],
       birthDate: [
         null,
         [
           Validators.required(),
-          Validators.pattern(/\d{4}/g, "Birth Date Must Be An Integer"),
+          Validators.pattern(/\d{4}/g, 'Birth Date Must Be An Integer'),
           Validators.min(new Date().getFullYear() - 100),
           Validators.max(new Date().getFullYear() - 21),
         ],
@@ -120,7 +123,7 @@ export class AppComponent implements OnInit {
         [
           Validators.required(),
           Validators.min(new Date().getFullYear() - 100),
-          Validators.max(new Date().getFullYear() - 18, "Must be 18 Years Old"),
+          Validators.max(new Date().getFullYear() - 18, 'Must be 18 Years Old'),
         ],
       ],
       age: [null, Validators.required()],
@@ -131,7 +134,6 @@ export class AppComponent implements OnInit {
       questionAnswerList: this.formBuilder.array([]),
       hobbieList: this.formBuilder.array([]),
       captcha: [null, this.myCustomValidator(1234)],
-      fullName: [null, [Validators.required(), Validators.minLength(4), Validators.maxLength(7)]]
     });
 
     this.questionAnswerListFormArray.push(
@@ -142,11 +144,6 @@ export class AppComponent implements OnInit {
     );
 
     this.hobbiesListFormArray.push(new FormControl('Code'));
-  }
-
-  public handleShowCustomInputValue(): void {
-    console.log("Info: Come from handleShowCustomInputValue");
-    console.log(this.formGroup.get("fullName").value);
   }
 
   public myCustomValidator(captchaAnswer: number): ValidatorFn {

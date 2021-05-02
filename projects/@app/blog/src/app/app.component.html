@@ -17,62 +17,45 @@
   </div>
   <form [formGroup]="formGroup">
     <div class="form-group">
-      <label>Custom Input</label>
-      <app-custom-input
-        formControlName="fullName"
-        placeholder="Full Name"
-      ></app-custom-input>
-    </div>
-
-    <ngid-button (onClick)="handleShowCustomInputValue()"
-      >Show Custom Input Value</ngid-button
-    >
-    <br />
-    <br />
-
-    <div class="form-group">
       <label for="captcha">Captcha - Answer</label>
-      <app-custom-input formControlName="captcha"></app-custom-input>
+      <ngid-input formControlName="captcha"></ngid-input>
     </div>
 
     <div class="form-group">
       <label for="name" class="required">Name</label>
-      <app-custom-input formControlName="name"></app-custom-input>
+      <ngid-input formControlName="name"></ngid-input>
     </div>
 
     <div class="form-group">
       <label for="password" class="required">Password</label>
-      <app-custom-input
-        formControlName="password"
-        type="password"
-      ></app-custom-input>
+      <ngid-input formControlName="password" type="password"></ngid-input>
     </div>
 
     <div class="form-group">
       <label for="confirmPassword" class="required">Confirm Password</label>
-      <app-custom-input
+      <ngid-input
         formControlName="confirmPassword"
         type="password"
-      ></app-custom-input>
+      ></ngid-input>
     </div>
 
     <div class="form-group">
       <label for="birthDate">Birth Date</label>
-      <app-custom-input formControlName="birthDate"></app-custom-input>
+      <ngid-input formControlName="birthDate"></ngid-input>
     </div>
 
     <div class="form-group">
       <label for="birthDate">Year Of Birth</label>
-      <app-custom-input formControlName="yearOfBirth"></app-custom-input>
+      <ngid-input formControlName="yearOfBirth"></ngid-input>
     </div>
 
     <div class="form-group">
       <label for="name" class="required">Email</label>
-      <app-custom-input formControlName="email"></app-custom-input>
+      <ngid-input formControlName="email"></ngid-input>
     </div>
     <div class="form-group">
       <label for="age">Age</label>
-      <app-custom-input formControlName="age"></app-custom-input>
+      <ngid-input formControlName="age"></ngid-input>
     </div>
     <div class="form-group">
       <label for="address">Address</label>
