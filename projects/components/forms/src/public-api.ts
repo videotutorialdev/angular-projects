@@ -6,3 +6,5 @@ export * from './lib/app-custom-input/app-custom-input.module';
 export * from './lib/forms.module';
 export * from './lib/ngid-input/ngid-input.component';
 export * from './lib/ngid-input/ngid-input.module';
+export * from './lib/ngid-textarea/ngid-textarea.component';
+export * from './lib/ngid-textarea/ngid-textarea.module';

@@ -59,35 +59,7 @@
     </div>
     <div class="form-group">
       <label for="address">Address</label>
-      <textarea
-        type="text"
-        class="form-control"
-        id="address"
-        formControlName="address"
-        [ngClass]="[
-          (formGroup.get('address').dirty ||
-            formGroup.get('address').touched) &&
-          formGroup.get('address').invalid
-            ? 'is-invalid'
-            : '',
-          (formGroup.get('address').dirty ||
-            formGroup.get('address').touched) &&
-          formGroup.get('address').valid
-            ? 'is-valid'
-            : ''
-        ]"
-      >
-      </textarea>
-      <small
-        class="text-danger"
-        *ngIf="
-          (formGroup.get('address').dirty ||
-            formGroup.get('address').touched) &&
-          formGroup.get('address').invalid
-        "
-      >
-        {{ formGroup.get("address").errors.message }}
-      </small>
+      <ngid-textarea formControlName="address" size="LG"></ngid-textarea>
     </div>
     <div class="form-group">
       <label for="name">Gender</label>
