@@ -1,0 +1,21 @@
+<div
+  class="custom-control custom-radio"
+  *ngFor="let option of options; let i = index"
+>
+  <input
+    type="radio"
+    class="custom-control-input"
+    [checked]="
+      (formControl.value &&
+        (optionValuePath ? formControl.value : formControl.value.id)) ===
+      (optionValuePath ? option[optionValuePath] : option.id)
+    "
+    (change)="handleValueChange(option)"
+    [ngClass]="[isValid ? 'is-valid' : '', isInvalid ? 'is-invalid' : '']"
+    [disabled]="formControl.disabled"
+    [id]="i"
+  />
+  <label [for]="i" class="custom-control-label">
+    {{ optionViewPath ? option[optionViewPath] : option.name || option }}
+  </label>
+</div>

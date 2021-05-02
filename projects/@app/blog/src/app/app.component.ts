@@ -58,8 +58,8 @@ export class AppComponent implements OnInit {
 
   private setInitializationState(): void {
     this.genderList = [
-      { id: 1, name: 'Male' },
-      { id: 2, name: 'Female' },
+      { id: 1, name: 'Male', initial: 'Pria' },
+      { id: 2, name: 'Female', initial: 'Wanita' },
     ];
 
     this.skillList = [
@@ -128,7 +128,7 @@ export class AppComponent implements OnInit {
       ],
       age: [null, Validators.required()],
       address: [null, Validators.required()],
-      gender: [null, Validators.required()],
+      gender: ['Pria', Validators.required()],
       skills: [null, Validators.required()],
       country: ['IDN', Validators.required()],
       questionAnswerList: this.formBuilder.array([]),
@@ -247,7 +247,9 @@ export interface BaseInterface {
 }
 interface Skill extends BaseInterface {}
 
-interface Gender extends BaseInterface {}
+interface Gender extends BaseInterface {
+  initial: string;
+}
 
 interface Country extends BaseInterface {
   isoCode: string;

@@ -63,44 +63,12 @@
     </div>
     <div class="form-group">
       <label for="name">Gender</label>
-      <div
-        class="custom-control custom-radio"
-        *ngFor="let gender of genderList; let i = index"
-      >
-        <input
-          type="radio"
-          id="{{ 'gender' + i }}"
-          class="custom-control-input"
-          [value]="gender"
-          [checked]="formGroup.get('gender').value?.id === gender.id"
-          (change)="handleChangeGender(gender)"
-          [disabled]="formGroup.get('gender').disabled"
-          [ngClass]="[
-            (formGroup.get('gender').dirty ||
-              formGroup.get('gender').touched) &&
-            formGroup.get('gender').invalid
-              ? 'is-invalid'
-              : '',
-            (formGroup.get('gender').dirty ||
-              formGroup.get('gender').touched) &&
-            formGroup.get('gender').valid
-              ? 'is-valid'
-              : ''
-          ]"
-        />
-        <label for="{{ 'gender' + i }}" class="custom-control-label">
-          {{ gender.name }}
-        </label>
-      </div>
-      <small
-        class="text-danger"
-        *ngIf="
-          (formGroup.get('gender').dirty || formGroup.get('skills').touched) &&
-          formGroup.get('gender').invalid
-        "
-      >
-        {{ formGroup.get("gender").errors.message }}
-      </small>
+      <ngid-radio
+        formControlName="gender"
+        [options]="genderList"
+        optionViewPath="initial"
+        optionValuePath="initial"
+      ></ngid-radio>
     </div>
     <div class="form-group">
       <label for="name">Skills</label>
