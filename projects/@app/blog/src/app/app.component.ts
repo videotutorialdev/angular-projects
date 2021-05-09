@@ -37,9 +37,6 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.setInitializationState();
     this.setFormGroupState();
-    console.log('Info: Come from ngOnInit');
-    console.log(this.formGroup);
-    console.log(this.formControlName);
   }
 
   public handleDisableOrEnableForm(): void {

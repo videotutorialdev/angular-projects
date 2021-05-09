@@ -15,6 +15,10 @@
         "dist/components/popup/components-popup",
         "dist/components/popup"
       ],
+      "utils": [
+        "dist/utils/utils",
+        "dist/utils"
+      ],
       "validators": [
         "dist/validators/validators",
         "dist/validators"
