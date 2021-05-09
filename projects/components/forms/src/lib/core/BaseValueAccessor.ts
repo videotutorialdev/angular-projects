@@ -6,6 +6,7 @@ import {
   FormGroup,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
+import { TextUtils } from 'utils';
 
 export function makeProvider(componentTarget: any): Provider {
   return {
@@ -37,6 +38,8 @@ export abstract class BaseValueAccessor
   public formGroup: FormGroup;
   public formControl: AbstractControl;
 
+  public textUtils: TextUtils;
+
   public classNameSize: string;
 
   protected abstract onInit(): void;
@@ -50,10 +53,15 @@ export abstract class BaseValueAccessor
   constructor(private controlContainer: ControlContainer) {}
 
   ngOnInit() {
+    this.setInitializationState();
     this.setFormGroupState();
     this.setFormControlState();
     this.setClassNameSizeState();
     this.onInit();
+  }
+
+  private setInitializationState(): void {
+    this.textUtils = TextUtils.Builder();
   }
 
   private setFormGroupState(): void {

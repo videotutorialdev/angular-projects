@@ -7,11 +7,14 @@ import { BaseValueAccessor, makeProvider } from '../core/BaseValueAccessor';
   providers: [makeProvider(NgidCheckboxComponent)],
 })
 export class NgidCheckboxComponent extends BaseValueAccessor {
+  public generateRandomId: string;
   constructor(controlContainer: ControlContainer) {
     super(controlContainer);
   }
 
-  protected onInit(): void {}
+  protected onInit(): void {
+    this.generateRandomId = this.textUtils.generateRandomString();
+  }
 
   public handleCheckboxChange(isChecked: boolean, option: any) {
     let formControlValues: Array<any> = this.formControl.value || [];

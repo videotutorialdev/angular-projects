@@ -13,13 +13,16 @@
     <input
       type="checkbox"
       class="custom-control-input"
-      [id]="formControlName + i"
+      [id]="formControlName + generateRandomId + i"
       (change)="handleCheckboxChange($event.target.checked, option)"
       [checked]="formControl.value | ngidCheckboxCompare: option"
       [ngClass]="[isValid ? 'is-valid' : '', isInvalid ? 'is-invalid' : '']"
       [disabled]="formControl.disabled"
     />
-    <label [for]="formControlName + i" class="custom-control-label">
+    <label
+      [for]="formControlName + generateRandomId + i"
+      class="custom-control-label"
+    >
       {{ option.name }}
     </label>
   </div>
@@ -28,12 +31,15 @@
   <div class="custom-control custom-checkbox">
     <input
       type="checkbox"
-      id="random"
+      [id]="formControlName + generateRandomId"
       class="custom-control-input"
       [formControl]="formControl"
       [ngClass]="[isValid ? 'is-valid' : '', isInvalid ? 'is-invalid' : '']"
     />
-    <label for="random" class="custom-control-label">
+    <label
+      [for]="formControlName + generateRandomId"
+      class="custom-control-label"
+    >
       <ng-content></ng-content>
     </label>
   </div>

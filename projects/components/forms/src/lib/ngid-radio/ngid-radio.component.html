@@ -13,9 +13,12 @@
     (change)="handleValueChange(option)"
     [ngClass]="[isValid ? 'is-valid' : '', isInvalid ? 'is-invalid' : '']"
     [disabled]="formControl.disabled"
-    [id]="i"
+    [id]="formControlName + generateRandomId + i"
   />
-  <label [for]="i" class="custom-control-label">
+  <label
+    [for]="formControlName + generateRandomId + i"
+    class="custom-control-label"
+  >
     {{ optionViewPath ? option[optionViewPath] : option.name || option }}
   </label>
 </div>

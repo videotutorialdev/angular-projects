@@ -7,11 +7,14 @@ import { BaseValueAccessor, makeProvider } from '../core/BaseValueAccessor';
   providers: [makeProvider(NgidRadioComponent)],
 })
 export class NgidRadioComponent extends BaseValueAccessor {
+  public generateRandomId: string;
   constructor(controlContainer: ControlContainer) {
     super(controlContainer);
   }
 
-  protected onInit(): void {}
+  protected onInit(): void {
+    this.generateRandomId = this.textUtils.generateRandomString();
+  }
 
   public handleValueChange(value: any): void {
     if (!this.formControl.touched) {
