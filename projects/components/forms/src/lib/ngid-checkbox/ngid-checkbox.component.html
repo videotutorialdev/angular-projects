@@ -1,0 +1,44 @@
+<ng-container
+  *ngIf="
+    options;
+    then checkboxWithOptionsTemplate;
+    else checkboxWithoutOptionsTemplate
+  "
+></ng-container>
+<ng-template #checkboxWithOptionsTemplate>
+  <div
+    class="custom-control custom-checkbox"
+    *ngFor="let option of options; let i = index"
+  >
+    <input
+      type="checkbox"
+      class="custom-control-input"
+      [id]="formControlName + i"
+      (change)="handleCheckboxChange($event.target.checked, option)"
+      [checked]="formControl.value | ngidCheckboxCompare: option"
+      [ngClass]="[isValid ? 'is-valid' : '', isInvalid ? 'is-invalid' : '']"
+      [disabled]="formControl.disabled"
+    />
+    <label [for]="formControlName + i" class="custom-control-label">
+      {{ option.name }}
+    </label>
+  </div>
+</ng-template>
+<ng-template #checkboxWithoutOptionsTemplate>
+  <div class="custom-control custom-checkbox">
+    <input
+      type="checkbox"
+      id="random"
+      class="custom-control-input"
+      [formControl]="formControl"
+      [ngClass]="[isValid ? 'is-valid' : '', isInvalid ? 'is-invalid' : '']"
+    />
+    <label for="random" class="custom-control-label">
+      <ng-content></ng-content>
+    </label>
+  </div>
+</ng-template>
+
+<small class="text-danger" *ngIf="isInvalid">
+  {{ formControl.errors.message }}
+</small>

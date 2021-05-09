@@ -134,7 +134,20 @@ export class AppComponent implements OnInit {
       questionAnswerList: this.formBuilder.array([]),
       hobbieList: this.formBuilder.array([]),
       captcha: [null, this.myCustomValidator(1234)],
+      termsAndConditions: [
+        false,
+        Validators.required(
+          'You should have to accept our terms and conditions'
+        ),
+      ],
     });
+
+    setTimeout(() => {
+      this.formGroup.get('skills').patchValue([
+        { id: 1, name: 'JavaScript' },
+        { id: 2, name: 'NodeJS' },
+      ]);
+    }, 2000);
 
     this.questionAnswerListFormArray.push(
       this.formBuilder.group({
