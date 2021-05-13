@@ -1,0 +1,13 @@
+div.card.ngid-card {
+  margin-bottom: 0.5rem;
+  div.card-header {
+    background: transparent;
+    border-color: transparent;
+    h4.card-title {
+      margin: 0;
+    }
+    span.card-description {
+      color: #747474;
+    }
+  }
+}

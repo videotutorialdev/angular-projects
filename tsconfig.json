@@ -7,6 +7,10 @@
         "dist/components/button/components-button",
         "dist/components/button"
       ],
+      "@components/card": [
+        "dist/components/card/components-card",
+        "dist/components/card"
+      ],
       "@components/forms": [
         "dist/components/forms/components-forms",
         "dist/components/forms"

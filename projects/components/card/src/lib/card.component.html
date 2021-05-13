@@ -1,0 +1,12 @@
+<div class="card ngid-card">
+  <div class="card-header" *ngIf="header">
+    <h4 class="card-title">{{ header }}</h4>
+    <span class="card-description" *ngIf="description">{{ description }}</span>
+  </div>
+  <div
+    class="card-body"
+    [ngStyle]="{ 'padding-top': header ? '0rem' : '1.25rem' }"
+  >
+    <ng-content></ng-content>
+  </div>
+</div>

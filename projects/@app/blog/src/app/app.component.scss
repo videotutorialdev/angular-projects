@@ -24,19 +24,3 @@ label.required::after {
   content: '*';
   color: red;
 }
-
-div.card {
-  div.card-header {
-    background: transparent;
-    border-color: transparent;
-    h4.card-title {
-      margin: 0;
-    }
-    span.card-description {
-      color: #747474;
-    }
-  }
-  div.card-body {
-    padding-top: 0;
-  }
-}

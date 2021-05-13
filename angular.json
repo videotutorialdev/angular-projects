@@ -446,6 +446,46 @@
           }
         }
       }
+    },
+    "@components/card": {
+      "projectType": "library",
+      "root": "projects/components/card",
+      "sourceRoot": "projects/components/card/src",
+      "prefix": "ngid",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/components/card/tsconfig.lib.json",
+            "project": "projects/components/card/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/components/card/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/components/card/src/test.ts",
+            "tsConfig": "projects/components/card/tsconfig.spec.json",
+            "karmaConfig": "projects/components/card/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/components/card/tsconfig.lib.json",
+              "projects/components/card/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "@app/blog"
