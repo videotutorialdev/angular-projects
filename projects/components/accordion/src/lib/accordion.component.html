@@ -1,0 +1,6 @@
+<div
+  class="accordion"
+  [id]="isShowMultiple ? '' : accordionService.accordionParentId"
+>
+  <ng-content select="ngid-accordion-item[header]"></ng-content>
+</div>

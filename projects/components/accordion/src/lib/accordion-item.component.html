@@ -1,0 +1,24 @@
+<div class="accordion-item">
+  <div
+    class="accordion-header"
+    [id]="accordionItemId + '-heading'"
+    data-bs-toggle="collapse"
+    [attr.data-bs-target]="'#' + accordionItemId"
+    [attr.aria-expanded]="active || accordionService.expandAll ? true : false"
+    [attr.aria-controls]="accordionItemId"
+    [ngClass]="active || accordionService.expandAll ? '' : 'collapsed'"
+  >
+    <h4 class="accordion-title">{{ header }}</h4>
+    <em class="fas fa-chevron-up"></em>
+  </div>
+  <div
+    [id]="accordionItemId"
+    class="accordion-collapse collapse"
+    [attr.aria-labelledby]="accordionItemId + '-heading'"
+    [ngClass]="active || accordionService.expandAll ? 'show' : ''"
+  >
+    <div class="accordion-body">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

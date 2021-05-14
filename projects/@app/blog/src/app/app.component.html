@@ -1,53 +1,15 @@
 <div class="container my-4">
   <h4>Welcome to Angular Accordion Tutorial</h4>
   <p>Let's build our accordion reusable components with Our Angular</p>
-
-  <div class="accordion" id="accordionParent">
-    <div class="accordion-item">
-      <div
-        class="accordion-header"
-        id="headingOne"
-        data-bs-toggle="collapse"
-        data-bs-target="#collapseOne"
-        aria-expanded="true"
-        aria-controls="collapseOne"
-      >
-        <h4 class="accordion-title">Accordion 1</h4>
-        <em class="fas fa-chevron-up"></em>
-      </div>
-      <div
-        id="collapseOne"
-        class="accordion-collapse collapse show"
-        data-bs-parent="#accordionParent"
-        aria-labelledby="headingOne"
-      >
-        <div class="accordion-body">
-          <p>Hello World, I am alive</p>
-        </div>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <div
-        class="accordion-header collapsed"
-        id="headingTwo"
-        data-bs-toggle="collapse"
-        data-bs-target="#collapseTwo"
-        aria-expanded="true"
-        aria-controls="collapseTwo"
-      >
-        <h4 class="accordion-title">Accordion 2</h4>
-        <em class="fas fa-chevron-up"></em>
-      </div>
-      <div
-        id="collapseTwo"
-        class="accordion-collapse collapse"
-        data-bs-parent="#accordionParent"
-        aria-labelledby="headingTwo"
-      >
-        <div class="accordion-body">
-          <p>Hello World, I am alive</p>
-        </div>
-      </div>
-    </div>
-  </div>
+  <ngid-accordion>
+    <ngid-accordion-item header="Accordion 1 Item 1">
+      Accordion Item 1
+    </ngid-accordion-item>
+    <ngid-accordion-item header="Accordion 1 Item 2">
+      Accordion Item 2
+    </ngid-accordion-item>
+    <ngid-accordion-item header="Accordion 1 Item 3">
+      Accordion Last Item
+    </ngid-accordion-item>
+  </ngid-accordion>
 </div>

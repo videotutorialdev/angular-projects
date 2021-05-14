@@ -3,6 +3,10 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
+      "@components/accordion": [
+        "dist/components/accordion/components-accordion",
+        "dist/components/accordion"
+      ],
       "@components/button": [
         "dist/components/button/components-button",
         "dist/components/button"
