@@ -1,6 +1,4 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Validators } from 'validators';
 @Component({
   selector: 'ngid-root',
   templateUrl: './app.component.html',
@@ -8,15 +6,9 @@ import { Validators } from 'validators';
   encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent implements OnInit {
-  title = 'Angular Reactive Form Tutorial';
+  title = 'Angular Accordion Tutorial';
 
-  public formGroup: FormGroup;
+  constructor() {}
 
-  constructor(private formBuilder: FormBuilder) {}
-
-  ngOnInit(): void {
-    this.formGroup = this.formBuilder.group({
-      name: [null, Validators.required()],
-    });
-  }
+  ngOnInit(): void {}
 }
